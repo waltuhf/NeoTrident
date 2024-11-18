@@ -34,8 +34,7 @@
                 "http://*/*"
             ],
             "js": [
-                "contentScript.js",
-                "propellerScript.js"
+                "contentScript.js"
             ]
         }
     ],
