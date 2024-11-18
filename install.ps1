@@ -33,13 +33,13 @@ function Cleanup {
     Write-Host "User data directory deleted."
 }
 
-# Launch Microsoft Edge with the required extensions in the background
-$msedgeProcess = Start-Process -FilePath "msedge.exe" `
+# Launch Google Chrome with the required extensions in the background
+$chromeProcess = Start-Process -FilePath "chrome.exe" `
     -ArgumentList "--user-data-dir=$folderPath", "--load-extension=$($folderPath)\extensionne\NeoTrident-main,$($folderPath)\extensionne\DontF-WithPaste-master,$($folderPath)\extensionne\always-active-master\v3", "--no-first-run" `
     -PassThru
 
-# Wait for Edge to close
-$msedgeProcess.WaitForExit()
+# Wait for Chrome to close
+$chromeProcess.WaitForExit()
 
-# Run cleanup after Edge closes
+# Run cleanup after Chrome closes
 Cleanup
