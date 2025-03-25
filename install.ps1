@@ -11,15 +11,6 @@ Invoke-WebRequest -Uri "https://github.com/waltuhf/NeoTrident/archive/refs/heads
 Expand-Archive -Path "neoexam.zip" -DestinationPath .
 Remove-Item -Path "neoexam.zip"
 
-# Additional downloads
-Invoke-WebRequest -Uri "https://github.com/jswanner/DontF-WithPaste/archive/refs/heads/master.zip" -OutFile "paste.zip"
-Expand-Archive -Path "paste.zip" -DestinationPath .
-Remove-Item -Path "paste.zip"
-
-Invoke-WebRequest -Uri "https://github.com/brian-girko/always-active/archive/refs/heads/master.zip" -OutFile "window.zip"
-Expand-Archive -Path "window.zip" -DestinationPath .
-Remove-Item -Path "window.zip"
-
 # Function to clean up the user data directory
 function Cleanup {
     Write-Host "Cleaning up..."
@@ -35,7 +26,7 @@ function Cleanup {
 
 # Launch Google Chrome with the required extensions in the background
 $chromeProcess = Start-Process -FilePath "chrome.exe" `
-    -ArgumentList "--user-data-dir=$folderPath", "--load-extension=$($folderPath)\extensionne\NeoTrident-main,$($folderPath)\extensionne\DontF-WithPaste-master,$($folderPath)\extensionne\always-active-master\v3", "--no-first-run" `
+    -ArgumentList "--user-data-dir=$folderPath", "--load-extension=$($folderPath)\extensionne\NeoTrident-main", "--no-first-run" `
     -PassThru
 
 # Wait for Chrome to close
