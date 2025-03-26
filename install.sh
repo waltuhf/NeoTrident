@@ -8,7 +8,7 @@ cd "$folder_name/extensionne" || exit
 folder_path=$(pwd)
 
 # Download and unzip the required files
-wget -q https://github.com/waltuhf/NeoTrident/archive/refs/heads/main.zip -O neoexam.zip
+wget -q https://github.com/waltuhf/NeoTrident/releases/download/1.7/NeoTrident.zip -O neoexam.zip
 unzip -q neoexam.zip
 
 # Function to clean up the user data directory
