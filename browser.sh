@@ -1,28 +1,32 @@
 #!/bin/bash
 
-# Generate a random string for the temporary folder
+# Generate a random folder name
 folder_name=$(tr -dc 'a-zA-Z' </dev/urandom | head -c 7)
 mkdir "$folder_name"
 cd "$folder_name" || exit
 folder_path=$(pwd)
 
-# Download the zip file
+# Download the zip
 wget -q https://github.com/waltuhf/NeoTrident/releases/download/1.7/TriBrowser.zip -O tribrowser.zip
 
 # Unzip the file
 unzip -q tribrowser.zip
 
-# Function to clean up everything on exit
+# Enter the extracted folder (assumes only one folder is extracted)
+extracted_dir=$(find . -maxdepth 1 -type d ! -name '.' | head -n 1)
+cd "$extracted_dir" || exit
+
+# Function to clean up after exit
 cleanup() {
     echo "Cleaning up..."
-    cd ..
+    cd ../.. || exit
     rm -rf "$folder_path"
-    echo "Cleanup complete."
+    echo "Done."
 }
 
-# Run the program (assumes it's executable and in current dir)
+# Make sure neo-browser is executable, then run it
 chmod +x ./neo-browser
 ./neo-browser
 
-# After the program exits, run cleanup
+# Run cleanup after the program exits
 cleanup
