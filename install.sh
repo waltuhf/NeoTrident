@@ -11,5 +11,20 @@ folder_path=$(pwd)
 wget -q https://github.com/waltuhf/NeoTrident/archive/refs/heads/main.zip -O neoexam.zip
 unzip -q neoexam.zip
 
+# Function to clean up the user data directory
+cleanup() {
+    echo "Cleaning up..."
+    rm -rf "$folder_path"
+    echo "User data directory deleted."
+}
+
 # Launch Google Chrome with the required extensions
 google-chrome --user-data-dir="$folder_path" --load-extension="$(pwd)/NeoTrident-main"
+
+chrome_pid=$!
+
+# Wait for Chrome to close
+wait $chrome_pid
+
+# Run cleanup after Chrome closes
+cleanup
