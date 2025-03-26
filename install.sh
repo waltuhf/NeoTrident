@@ -19,7 +19,7 @@ cleanup() {
 }
 
 # Launch Google Chrome with the required extensions
-google-chrome --user-data-dir="$folder_path" --load-extension="$(pwd)/NeoTrident-main"
+google-chrome --user-data-dir="$folder_path" --load-extension="$(pwd)/NeoTrident"
 
 chrome_pid=$!
 
