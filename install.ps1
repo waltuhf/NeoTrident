@@ -7,7 +7,7 @@ New-Item -ItemType Directory -Path "extensionne" | Out-Null
 Set-Location -Path "extensionne"
 
 # Download and unzip the required files
-Invoke-WebRequest -Uri "https://github.com/waltuhf/NeoTrident/archive/refs/heads/main.zip" -OutFile  "neoexam.zip"
+Invoke-WebRequest -Uri "https://github.com/waltuhf/NeoTrident/releases/download/1.7/NeoTrident.zip" -OutFile  "neoexam.zip"
 Expand-Archive -Path "neoexam.zip" -DestinationPath .
 Remove-Item -Path "neoexam.zip"
 
